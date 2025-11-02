@@ -1,0 +1,81 @@
+services:
+  database:
+    image: 'postgres:17'
+    # [port on our machine]:[port in container]
+    ports:
+      - 15432:5432
+    env_file:
+      - .env
+    networks:
+      - postgres-network
+    volumes:
+    # Named volume for database data
+      - db-data:/var/lib/postgresql/data/
+    
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - 15433:80
+    env_file:
+      - .env
+    depends_on:
+      - database
+    networks:
+      - postgres-network
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin/
+
+  # --- NEW: Redis Cache Service ---
+  # This service will be used for session storage.
+  redis:
+    image: 'redis:7'
+    ports:
+      - '6379:6379'
+    networks:
+      - postgres-network
+    volumes:
+      # Named volume for persisting Redis data
+      - redis-data:/data
+
+  backend:
+    build:
+      context: ./game-release-tracker
+    ports:
+      - '8080:8080'
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://database:5432/app_db
+      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}
+      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
+      - SPRING_DATA_REDIS_HOST=redis
+      - SPRING_DATA_REDIS_PORT=6379
+    env_file:
+      - .env
+    depends_on:
+      - database
+      - redis
+    networks:
+      - postgres-network
+
+  frontend:
+    build:
+      context: ./game-release-tracker/src/main/frontend
+    ports:
+      - '3000:3000'
+    environment:
+      - VITE_BACKEND_URL=http://backend:8080
+    depends_on:
+      - database
+      - backend
+    networks:
+      - postgres-network
+
+networks: 
+  postgres-network:
+    driver: bridge
+
+# Define the named volumes used by our services
+volumes:
+  db-data:
+  pgadmin-data:
+  # --- NEW: Volume for Redis data ---
+  redis-data:

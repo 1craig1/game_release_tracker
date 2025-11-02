@@ -1,0 +1,12 @@
+services:
+  frontend:
+    build:
+      context: .
+    ports:
+      - '3000:3000'
+    environment:
+      - VITE_API_URL=http://localhost:8080
+    volumes:
+      # Enable hot-reload during development
+      - .:/usr/src/app
+      - /usr/src/app/node_modules

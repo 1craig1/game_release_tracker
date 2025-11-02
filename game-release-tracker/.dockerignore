@@ -1,0 +1,9 @@
+build
+.gradle
+build.gradle.kts
+src/main/frontend/node_modules
+src/main/frontend/dist
+src/main/frontend/.vite
+.idea
+.vscode
+**/*.iml

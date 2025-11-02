@@ -1,0 +1,498 @@
+/* ===== Dark List Style ===== */
+:root{
+    --bg:#0f1115;
+    --panel:#151a22;
+    --card:#1a1f2b;
+    --card-2:#202635;
+    --text:#e6e8ee;
+    --muted:#a6adbb;
+    --accent:#6ae3ff;
+    --chip:#2a3142;
+    --pill:#2b825b;
+    --btn:#2b6de9;
+    --btn-grad: linear-gradient(90deg,#4c6fff,#6ae3ff);
+    --shadow: 0 8px 24px rgba(0,0,0,.35);
+    --radius:16px;
+}
+
+* { box-sizing: border-box; }
+
+body, #root { background: var(--bg); color: var(--text); }
+
+.dl-page{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 20px 64px;
+}
+
+/* Topbar */
+.dl-topbar{
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:16px;
+    margin-bottom:22px;
+    padding:18px 24px;
+    background: rgba(18,22,33,0.72);
+    border:1px solid rgba(82,96,138,0.25);
+    border-radius:18px;
+    backdrop-filter: blur(18px);
+    box-shadow:0 18px 36px rgba(5,8,18,0.35);
+}
+
+/* --- Topbar Actions Wrapper --- */
+/* This container holds the two rows: filters and user buttons */
+.dl-actions-wrapper {
+  display: flex;
+  flex-direction: column; /* Stack filter row and user row */
+  align-items: flex-end;  /* Align both rows to the right */
+  gap: 10px;              /* Space between the two rows */
+}
+
+/* Row 1: Filters (Search, Genres, etc.) */
+.dl-filter-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;       /* Allow wrapping on small screens */
+  justify-content: flex-end;
+}
+
+/* Row 2: User Buttons (Notifications, Profile, etc.) */
+.dl-user-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.dl-brand{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    font-weight:700;
+    font-size:20px;
+}
+.dl-brand .dot{
+    display:inline-block; width:10px; height:10px; border-radius:50%;
+    background: var(--accent); margin-right:8px; vertical-align:middle;
+    box-shadow:0 0 16px rgba(106,227,255,.8);
+}
+.dl-brand small{
+    font-weight:500; color: var(--muted); font-size:12px;
+}
+
+/* actions */
+.dl-actions{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end; }
+.dl-search{
+    width:320px; padding:12px 14px; border-radius:12px; background: var(--panel);
+    color: var(--text); border:1px solid #222736; outline:none;
+}
+.dl-search::placeholder{ color:#768099; }
+.dl-select{
+    padding:12px 14px; border-radius:12px; background: var(--panel);
+    color: var(--text); border:1px solid #222736; outline:none;
+}
+/* .dl-notifications{
+    background: linear-gradient(135deg, rgba(108,131,255,0.25), rgba(106,227,255,0.22));
+    color: var(--text);
+    border-color: rgba(118,140,255,0.45);
+}
+.dl-notifications .notification-link__badge{
+    background: linear-gradient(135deg, #ff6b81, #ff947f);
+}
+.dl-profile{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:11px 16px;
+    border-radius:12px;
+    background: rgba(188,146,255,0.2);
+    color: var(--text);
+    border:1px solid rgba(188,146,255,0.35);
+    text-decoration:none;
+    font-weight:600;
+}
+.dl-profile:hover{ filter:brightness(1.1); }
+.dl-wishlist{
+    display:inline-flex; align-items:center; justify-content:center;
+    padding:11px 16px; border-radius:12px;
+    background: rgba(106,227,255,0.2); color: var(--text);
+    border:1px solid rgba(106,227,255,0.35); text-decoration:none;
+    font-weight:600;
+}
+.dl-wishlist:hover{ filter:brightness(1.15); }
+
+.dl-logout{
+    padding:11px 16px; border-radius:12px; background: var(--card-2);
+    color: var(--text); border:1px solid #2a3042; cursor:pointer;
+}
+.dl-logout:hover{ filter:brightness(1.1); } */
+/* --- New User Button Styles --- */
+
+/* Base style for all top-bar user buttons */
+.dl-user-actions .dl-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  border: 1px solid rgba(148, 163, 184, 0.2); /* Subtle border */
+  background: rgba(40, 48, 70, 0.3);      /* Base glassy background */
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(5px); /* Adds the "glass" effect */
+}
+
+.dl-user-actions .dl-btn:hover {
+  filter: brightness(1.2);
+  border-color: rgba(148, 163, 184, 0.4);
+  color: var(--text);
+}
+
+/* Individual Button Colors (from new image) */
+
+/* Notifications: Soft blue/purple */
+.dl-user-actions .dl-btn-notifications {
+  background: rgba(118, 137, 255, 0.15);
+  border-color: rgba(118, 137, 255, 0.3);
+  color: #c9d2e3;
+}
+.dl-user-actions .dl-btn-notifications:hover {
+  background: rgba(118, 137, 255, 0.25);
+  border-color: rgba(118, 137, 255, 0.5);
+  color: #fff;
+}
+
+/* Profile: Muted purple/magenta */
+.dl-user-actions .dl-btn-profile {
+  background: rgba(188, 146, 255, 0.15);
+  border-color: rgba(188, 146, 255, 0.3);
+  color: #c9d2e3;
+}
+.dl-user-actions .dl-btn-profile:hover {
+  background: rgba(188, 146, 255, 0.25);
+  border-color: rgba(188, 146, 255, 0.5);
+  color: #fff;
+}
+
+/* Wishlist: Muted teal/green */
+.dl-user-actions .dl-btn-wishlist {
+  background: rgba(64, 224, 208, 0.15);
+  border-color: rgba(64, 224, 208, 0.3);
+  color: #c9d2e3;
+}
+.dl-user-actions .dl-btn-wishlist:hover {
+  background: rgba(64, 224, 208, 0.25);
+  border-color: rgba(64, 224, 208, 0.5);
+  color: #fff;
+}
+
+/* Admin Page: Solid bright blue (active/highlighted) */
+.dl-user-actions .dl-btn-admin {
+  background: #4c6fff; /* Using a blue from your --btn-grad */
+  border-color: #4c6fff;
+  color: #fff;
+  box-shadow: 0 0 12px rgba(76, 111, 255, 0.7);
+}
+.dl-user-actions .dl-btn-admin:hover {
+  background: #5a7bff;
+  border-color: #5a7bff;
+  filter: brightness(1.1);
+}
+
+/* Logout: Dark, muted */
+.dl-user-actions .dl-btn-logout {
+  background: rgba(40, 48, 70, 0.3);
+  border-color: rgba(148, 163, 184, 0.2);
+  color: var(--muted);
+}
+.dl-user-actions .dl-btn-logout:hover {
+  background: rgba(50, 60, 88, 0.4);
+  border-color: rgba(148, 163, 184, 0.4);
+  color: var(--text);
+}
+
+/* grid */
+.dl-grid{
+    display:grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap:16px;
+}
+
+/* card */
+.dl-card{
+    grid-column: span 6;
+    display:flex; gap:16px;
+    background: var(--card); border:1px solid #22283a;
+    border-radius: var(--radius);
+    padding:18px;
+    box-shadow: var(--shadow);
+    position:relative;
+    overflow:hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.dl-card::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    border-radius: var(--radius);
+    background: linear-gradient(135deg, rgba(108,131,255,0.08), transparent 60%);
+    opacity:0;
+    transition: opacity 0.2s ease;
+    pointer-events:none;
+}
+.dl-card:hover{
+    transform: translateY(-4px);
+    border-color: rgba(108,131,255,0.35);
+    box-shadow: 0 26px 44px rgba(12,18,36,0.45);
+}
+.dl-card:hover::before{
+    opacity:1;
+}
+@media (max-width: 980px){
+    .dl-card{ grid-column: span 12; }
+    .dl-search{ width:200px; }
+}
+
+.dl-media{
+    position:relative; width:180px; height:120px; overflow:hidden;
+    border-radius:12px; background:#0b0e13;
+    flex-shrink:0;
+}
+.dl-media img{
+    width:100%; height:100%; object-fit:cover; display:block;
+    filter: saturate(110%);
+}
+.dl-chip{
+    position:absolute; top:8px; right:8px;
+    font-size:12px; padding:6px 10px; border-radius:999px;
+    background: var(--chip); color:#cdd5e1; border:1px solid #313a52;
+}
+
+.dl-body{ flex:1; min-width:0; display:flex; flex-direction:column; gap:10px; }
+.dl-title{
+    margin:0; font-size:18px; line-height:1.2; font-weight:700;
+}
+.dl-title a{ color: var(--text); text-decoration:none; }
+.dl-title a:hover{ color: var(--accent); }
+
+.dl-desc{
+    margin:0; color: var(--muted); font-size:14px; line-height:1.5;
+    display:-webkit-box;
+    -webkit-line-clamp:3;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+    position:relative;
+}
+
+.dl-meta{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:8px; color:#c9d2e3;
+}
+.dl-author{ display:flex; align-items:center; gap:8px; font-size:13px; color:#c9d2e3; }
+.dl-curator-icon{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:22px;
+    height:22px;
+    border-radius:50%;
+    background:#2b3245;
+    font-size:12px;
+}
+.dot-sep{ opacity:.6; }
+.dl-tags{ display:flex; gap:8px; flex-wrap:wrap; }
+.dl-pill{
+    background:#263a31; color:#aefccf; border:1px solid #2e4a3f;
+    padding:4px 10px; font-size:12px; border-radius:999px;
+}
+
+.dl-footer{
+    margin-top:auto;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+.dl-btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    padding:10px 14px; border-radius:10px; background: var(--btn-grad);
+    color:#0b1020; font-weight:700; text-decoration:none; border:none;
+}
+.dl-btn-secondary{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:10px 14px;
+    border-radius:10px;
+    border:1px solid rgba(106,227,255,0.25);
+    background: rgba(22,28,40,0.9);
+    color: rgba(222,233,255,0.88);
+    font-weight:600;
+    cursor:pointer;
+    transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+.dl-btn-secondary.active {
+  background: rgba(106,227,255,0.25); /* lighter cyan */
+  border-color: rgba(106,227,255,0.6);
+  color: #6ae3ff; /* accent text */
+  box-shadow: 0 0 10px rgba(106,227,255,0.4);
+}
+
+.dl-btn-secondary:not(:disabled):hover {
+  transform: translateY(-1px);
+  border-color: rgba(106,227,255,0.55);
+  background: rgba(29,38,55,0.95);
+}
+
+.dl-btn-secondary:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.dl-pagination{
+    margin-top:32px;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:center;
+    gap:16px;
+    padding:18px 24px;
+    background: rgba(18,22,33,0.72);
+    border:1px solid rgba(82,96,138,0.25);
+    border-radius:18px;
+    box-shadow:0 18px 36px rgba(5,8,18,0.35);
+}
+.dl-pagination__summary{
+    font-weight:600;
+    color:var(--muted);
+}
+.dl-pagination__controls{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-wrap:wrap;
+}
+.dl-page-btn{
+    min-width:36px;
+    padding:8px 12px;
+    border-radius:10px;
+    border:1px solid rgba(82,96,138,0.4);
+    background: var(--panel);
+    color: var(--text);
+    font-weight:600;
+    cursor:pointer;
+    transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+.dl-page-btn:hover:not(:disabled){
+    border-color: rgba(106,227,255,0.6);
+    background: rgba(29,38,55,0.95);
+    transform: translateY(-1px);
+}
+.dl-page-btn:disabled{
+    opacity:0.5;
+    cursor:not-allowed;
+}
+.dl-page-btn.active{
+    background: var(--btn-grad);
+    color:#0b1020;
+    border-color: rgba(106,227,255,0.8);
+}
+.dl-pagination__ellipsis{
+    color:var(--muted);
+    padding:0 4px;
+}
+.dl-pagination__jump{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+.dl-pagination__jump input{
+    width:64px;
+    padding:8px 10px;
+    border-radius:10px;
+    border:1px solid rgba(82,96,138,0.4);
+    background: var(--panel);
+    color: var(--text);
+    font-weight:600;
+}
+.dl-pagination__jump label{
+    color:var(--muted);
+    font-weight:600;
+}
+
+
+.dl-wishlist-error{
+    margin-bottom:16px;
+    padding:10px 14px;
+    border-radius:10px;
+    background: rgba(255,107,107,0.15);
+    color:#ff8a8a;
+    border:1px solid rgba(255,107,107,0.3);
+}
+
+/* states */
+.dl-loading, .dl-error, .dl-empty{
+    color: var(--muted); text-align:center; padding:40px 0;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 2000; /* higher than dl-topbar */
+    background: #121621;
+    border: 1px solid rgba(82,96,138,0.25);
+    border-radius: 8px;
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 8px;
+    box-shadow: 0 8px 20px rgba(5,8,18,0.3);
+}
+
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content label {
+    display: flex;
+    align-items: center; /* vertical alignment */
+    gap: 8px;            /* spacing between checkbox and text */
+    padding: 4px 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--text);
+}
+
+.dropdown-search {
+    width: 100%;
+    padding: 6px 8px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(82,96,138,0.25);
+    background-color: var(--panel);
+    color: var(--text);
+}
+
+/* Standardize checkboxes inside dropdowns */
+.dropdown-content input[type="checkbox"] {
+    width: 18px;          /* uniform width */
+    height: 18px;         /* uniform height */
+    accent-color: var(--accent); /* consistent cyan when checked */
+    flex-shrink: 0;       /* prevent shrinking */
+    cursor: pointer;
+}

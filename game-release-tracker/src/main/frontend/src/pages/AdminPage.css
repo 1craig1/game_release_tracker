@@ -1,0 +1,154 @@
+/* General Page */
+.gd-page {
+  background-color: #0a0e1a; /* Dark background */
+  min-height: 100vh;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #ffffff;
+}
+
+/* Header */
+.gd-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.gd-header h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin: 0;
+}
+
+/* Buttons */
+.gd-btn {
+  background: linear-gradient(90deg, #4a7cff, #5fcdff);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.5rem;
+  color: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.gd-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(95, 205, 255, 0.4);
+}
+
+/* Back and Logout */
+.gd-header .gd-btn-back {
+  background: linear-gradient(90deg, #4a7cff, #5fcdff);
+}
+
+/* Controls Section */
+.gd-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Card Container */
+.gd-card {
+  background-color: #1e2433; /* Slightly lighter dark card */
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+/* Title */
+.gd-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #ffffff;
+}
+
+/* Search Rows */
+.gd-search-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.gd-input-small {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: #1e2a3a; /* dark input field */
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.gd-input-small::placeholder {
+  color: #a0a0a0;
+}
+
+/* Reset Button */
+.gd-btn-reset {
+  margin-top: 0.5rem;
+}
+
+/* Table */
+.gd-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: #1e2a44;
+  border-radius: 1rem;
+  overflow: hidden;
+  margin-top: 2rem;
+}
+
+.gd-table th, .gd-table td {
+  padding: 0.8rem 1rem;
+  text-align: left;
+}
+
+.gd-table th {
+  background-color: #2a3650;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.gd-table tr {
+  background-color: #1e2a44;
+}
+
+.gd-table tr:nth-child(even) {
+  background-color: #222f50;
+}
+
+.gd-empty {
+  text-align: center;
+  padding: 1rem;
+  color: #aaaaaa;
+}
+
+/* Role Dropdown */
+.gd-select {
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: #1e2a3a;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+/* Delete Button */
+.gd-btn-delete {
+  background-color: #4a2828;
+  color: #ff6b6b;
+  border-radius: 0.5rem;
+  padding: 0.4rem 0.8rem;
+}
+
+.gd-btn-delete:hover {
+  background-color: #5a3030;
+  color: #ffa8a8;
+}
